@@ -2,7 +2,6 @@
 include 'libs/Parsedown.php';
 $Parsedown = new Parsedown();
 $posts = glob('posts/*.{md}', GLOB_BRACE);
-$postsHtml = '';
 $metaCsv = '';
 $counter = 1;
 $postsArr = [];
@@ -84,14 +83,14 @@ foreach ($posts as &$postFile) {
   }
 
   // write html post file
+  $postHtml = '';
   $postMarkdown = join("\n",$postLines);
-  $postHtml = $Parsedown->text($postMarkdown);
-  $postsHtml = $postsHtml . $Parsedown->text($postMarkdown);
-  if ( !file_exists($filename) ) {
-    $file = fopen('blog/'.$filename, 'w');
-    fwrite($file, $postHtml);
-    fclose($file);
-  }
+  $postHtml = $postHtml . file_get_contents('includes/header.php');
+  $postHtml = $postHtml . $Parsedown->text($postMarkdown);
+  $postHtml = $postHtml . file_get_contents('includes/footer.php');
+  $file = fopen('blog/'.$filename, 'w');
+  fwrite($file, $postHtml);
+  fclose($file);
 
   echo '<div><strong>Post ' . $counter . ' Compiled:</strong> ' . $filename . '</div>';
   echo '<div><strong>Title:</strong> ' . $title . '</div>';

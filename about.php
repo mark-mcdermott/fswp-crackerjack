@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title lang="en">Fullstack Wolfpack</title>
     <meta name="description" content="test site description">
-    <link href="style.min.css" rel="stylesheet">
+    <link href="/style.min.css" rel="stylesheet">
 </head>
 
 <body class="home">
@@ -113,8 +113,8 @@
   <footer>
 
     <?php
-      $index = filesize('index.php');
-      $style = filesize('style.min.css');
+      $index = filesize('../index.php');
+      $style = filesize('../style.min.css');
       $totalKb = ceil(($index + $style) / 1000 + 1);
     ?>
 

@@ -6,8 +6,8 @@
   <footer>
 
     <?php
-      $index = filesize('index.php');
-      $style = filesize('style.min.css');
+      $index = filesize('../index.php');
+      $style = filesize('../style.min.css');
       $totalKb = ceil(($index + $style) / 1000 + 1);
     ?>
 
