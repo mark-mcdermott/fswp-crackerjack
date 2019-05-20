@@ -59,6 +59,7 @@ header{
           font-weight: bold;
           font-size: 1.15rem;
           text-decoration: none;
+          &.active, 
           &:hover {
             color: $yellow;
             border-bottom: 1px solid $yellow;
@@ -82,7 +83,7 @@ main {
 }
 
 footer {
-  background: $black; 
+  background: $black;
   p {
     padding: 3em 0;
     margin: 0;
