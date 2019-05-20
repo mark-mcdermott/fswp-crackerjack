@@ -57,11 +57,11 @@
               <ul>
 
                   <li class="hidable">
-                  <a class="active" href="/">Home</a>
+                  <a href="/">Home</a>
                 </li>
 
                   <li>
-                  <a href="/blog.php">Blog</a>
+                  <a class="active" href="/blog.php">Blog</a>
                 </li>
 
                 <!--
@@ -113,7 +113,7 @@
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a></p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 16 kB</p>
     </div>
   </footer>
 

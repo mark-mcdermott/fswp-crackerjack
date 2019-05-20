@@ -95,13 +95,16 @@ foreach ($posts as &$postFile) {
   fwrite($file, $postHtml);
   fclose($file);
 
-  // add filesize in footer'
+  // add filesize in footer
   $postFileSize = filesize('blog/' . $filename);
   $styleFileSize = filesize('style.min.css');
   $postAndStylesSize = $postFileSize + $styleFileSize;
   $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
   $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
   $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
+
+  // add active class in header
+  $postHtml = str_replace('<a href="/blog.php">Blog</a>', '<a class="active" href="/blog.php">Blog</a>', $postHtml);
   file_put_contents('blog/'.$filename, $postHtml);
 
   echo '<div><strong>Post ' . $counter . ' Compiled:</strong> ' . $filename . '</div>';
@@ -172,14 +175,18 @@ $indexFile = fopen('index.php', 'w');
 fwrite($indexFile, $index);
 fclose($indexFile);
 
-// TODO add filesize in footer
-// $postFileSize = filesize('blog/' . $filename);
-// $styleFileSize = filesize('style.min.css');
-// $postAndStylesSize = $postFileSize + $styleFileSize;
-// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
-// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
-// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
-// file_put_contents('blog/'.$filename, $postHtml);
+$postFileSize = filesize('index.php');
+$styleFileSize = filesize('style.min.css');
+$indexAndStylesSize = $postFileSize + $styleFileSize;
+$formattedBothSize = ceil($indexAndStylesSize / 1000 + 1);
+$sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+$indexHtml = str_replace('Crackerjack</a>', $sizeBlurb, $index);
+
+// add active class in header
+$indexHtml = str_replace('<a href="/">Home</a>', '<a class="active" href="/">Home</a>', $indexHtml);
+file_put_contents('index.php', $indexHtml);
+
+file_put_contents('index.php', $indexHtml);
 
 
 // take everything in $postsArr and print titles & links to archive page
@@ -199,14 +206,17 @@ $archiveFile = fopen('blog.php', 'w');
 fwrite($archiveFile, $archive);
 fclose($archiveFile);
 
-// TODO add filesize in footer
-// $postFileSize = filesize('blog/' . $filename);
-// $styleFileSize = filesize('style.min.css');
-// $postAndStylesSize = $postFileSize + $styleFileSize;
-// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
-// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
-// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
-// file_put_contents('blog/'.$filename, $postHtml);
+$archiveFileSize = filesize('blog.php');
+$styleFileSize = filesize('style.min.css');
+$archiveAndStylesSize = $archiveFileSize + $styleFileSize;
+$formattedBothSize = ceil($archiveAndStylesSize / 1000 + 1);
+$sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+$archiveHtml = str_replace('Crackerjack</a>', $sizeBlurb, $archive);
+
+// add active class in header
+$archiveHtml = str_replace('<a href="/blog.php">Blog</a>', '<a class="active" href="/blog.php">Blog</a>', $archiveHtml);
+
+file_put_contents('blog.php', $archiveHtml);
 
 // make about.php
 $aboutContent = '';
@@ -217,13 +227,17 @@ $aboutFile = fopen('about.php', 'w');
 fwrite($aboutFile, $aboutContent);
 fclose($aboutFile);
 
-// TODO add filesize in footer
-// $postFileSize = filesize('blog/' . $filename);
-// $styleFileSize = filesize('style.min.css');
-// $postAndStylesSize = $postFileSize + $styleFileSize;
-// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
-// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
-// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
-// file_put_contents('blog/'.$filename, $postHtml);
+$aboutFileSize = filesize('about.php');
+$styleFileSize = filesize('style.min.css');
+$aboutAndStylesSize = $aboutFileSize + $styleFileSize;
+$formattedBothSize = ceil($aboutAndStylesSize / 1000 + 1);
+$sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+$aboutHtml = str_replace('Crackerjack</a>', $sizeBlurb, $aboutContent);
+
+// add active class in header
+$aboutHtml = str_replace('<a href="/about.php">About</a>', '<a class="active" href="/about.php">About</a>', $aboutHtml);
+file_put_contents('blog/'.$filename, $aboutHtml);
+
+file_put_contents('about.php', $aboutHtml);
 
 ?>

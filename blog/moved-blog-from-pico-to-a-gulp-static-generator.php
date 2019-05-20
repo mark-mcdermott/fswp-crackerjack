@@ -57,11 +57,11 @@
               <ul>
 
                   <li class="hidable">
-                  <a class="active" href="/">Home</a>
+                  <a href="/">Home</a>
                 </li>
 
                   <li>
-                  <a href="/blog.php">Blog</a>
+                  <a class="active" href="/blog.php">Blog</a>
                 </li>
 
                 <!--
