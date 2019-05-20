@@ -135,6 +135,8 @@ header p.tagline {
 .site-nav a.active { color: #fff63a; border-bottom: 1px solid #fff63a; }
 .site-nav a.active:hover { border-bottom: 1px solid #fff63a; }
 .site-nav a:hover, #nav-toggle:hover { color: #fff63a; }
+.site-nav a:active { color: #fff; }
+.site-nav a.active:active { color: #fff63a; border-bottom: 1px solid #fff63a; }
 
 #nav-toggle {
   color: #fff;
