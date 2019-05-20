@@ -132,7 +132,7 @@ header p.tagline {
   padding: 0 0 2px;
   color: #fff;
 }
-.site-nav a.active { border-bottom: 1px solid #fff; }
+.site-nav a.active { color: #fff63a; border-bottom: 1px solid #fff63a; }
 .site-nav a.active:hover { border-bottom: 1px solid #fff63a; }
 .site-nav a:hover, #nav-toggle:hover { color: #fff63a; }
 
@@ -801,7 +801,7 @@ main .flashcards {
   .flashcards .set .answer {
     width: 100%;
     min-width: inherit;
-  }  
+  }
 }
 
 .flashcards .set .question.hide,
