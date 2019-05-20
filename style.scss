@@ -89,7 +89,8 @@ header p.site-title, {
 .home header h1.site-title a,
 .home header h1.site-title a:hover,
 header p.site-title a,
-header p.site-title a:hover {
+header p.site-title a:hover,
+header p.site-title a:visited {
    color: #fff63a;
  }
 
@@ -130,16 +131,16 @@ header p.tagline {
 
 
 
-.site-nav a {
+.site-nav a,
+.site-nav a:visited {
   padding: 0 0 2px;
   color: #fff;
 }
-a:-webkit-any-link
-.site-nav a.active { color: #fff63a; border-bottom: 1px solid #fff63a; }
+
+.site-nav a.active,
+.site-nav a.actived:visited { color: #fff63a; border-bottom: 1px solid #fff63a; }
 .site-nav a.active:hover { border-bottom: 1px solid #fff63a; }
 .site-nav a:hover, #nav-toggle:hover { color: #fff63a; }
-a:-webkit-any-link,
-.site-nav a:active { color: #fff; }
 .site-nav a.active:active { color: #fff63a; border-bottom: 1px solid #fff63a; }
 
 #nav-toggle {
