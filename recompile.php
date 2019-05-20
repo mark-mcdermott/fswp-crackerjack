@@ -28,6 +28,7 @@ foreach ($posts as &$postFile) {
   $tags = '';
 
   $postContents = file_get_contents($postFile);
+  $mdPathAndFile = $postFile;
   $postLines = explode("\n", $postContents);
 
   // get title
@@ -89,8 +90,19 @@ foreach ($posts as &$postFile) {
   $postHtml = $postHtml . $Parsedown->text($postMarkdown);
   $postHtml = $postHtml . file_get_contents('includes/footer.php');
   $file = fopen('blog/'.$filename, 'w');
+
+  // write file
   fwrite($file, $postHtml);
   fclose($file);
+
+  // add filesize in footer'
+  $postFileSize = filesize('blog/' . $filename);
+  $styleFileSize = filesize('style.min.css');
+  $postAndStylesSize = $postFileSize + $styleFileSize;
+  $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
+  $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+  $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
+  file_put_contents('blog/'.$filename, $postHtml);
 
   echo '<div><strong>Post ' . $counter . ' Compiled:</strong> ' . $filename . '</div>';
   echo '<div><strong>Title:</strong> ' . $title . '</div>';
@@ -107,7 +119,8 @@ foreach ($posts as &$postFile) {
     'Exceprt' => $excerpt,
     'Thumbnail' => $thumbnail,
     'Tags' => $tags,
-    'Filename' => $filename
+    'Filename' => $filename,
+    'MdPathAndFile' => $mdPathAndFile
   ];
 
   // push post to posts array
@@ -120,15 +133,53 @@ function sortOnDate($object1, $object2) {
   return strtotime($object1->Date) < strtotime($object2->Date);
 }
 usort($postsArr, 'sortOnDate');
-$firstPostTitle = '<h2>' . $postsArr[0]->Title . '</h2>';
-$firstpost = file_get_contents('blog/' . $postsArr[0]->Filename);
-$index = file_get_contents('includes/header.php');
-$index = $index . $firstPostTitle;
-$index = $index . $firstpost;
+$firstPost = $postsArr[0];
+
+// get firstpost contents
+$firstPostContents = file_get_contents($firstPost->MdPathAndFile);
+$firstPostLines = explode("\n", $firstPostContents);
+if (strpos($firstPostLines[0], 'Title: ' ) !== false) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+if (strpos($firstPostLines[0], 'Date: ' ) !== false) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+if (strpos($firstPostLines[0], 'Excerpt: ' ) !== false) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+if (strpos($firstPostLines[0], 'Thumbnail: ' ) !== false) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+if (strpos($firstPostLines[0], 'Tags: ' ) !== false) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+if (empty($firstPostLines[0])) {
+  unset($firstPostLines[0]);
+  $firstPostLines = array_values($firstPostLines);
+}
+
+$index = '';
+$firstPostMarkdown = join("\n",$firstPostLines);
+$index = $index . file_get_contents('includes/header.php');
+$index = $index . $Parsedown->text($firstPostMarkdown);
 $index = $index . file_get_contents('includes/footer.php');
 $indexFile = fopen('index.php', 'w');
 fwrite($indexFile, $index);
 fclose($indexFile);
+
+// TODO add filesize in footer
+// $postFileSize = filesize('blog/' . $filename);
+// $styleFileSize = filesize('style.min.css');
+// $postAndStylesSize = $postFileSize + $styleFileSize;
+// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
+// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
+// file_put_contents('blog/'.$filename, $postHtml);
 
 
 // take everything in $postsArr and print titles & links to archive page
@@ -148,6 +199,15 @@ $archiveFile = fopen('blog.php', 'w');
 fwrite($archiveFile, $archive);
 fclose($archiveFile);
 
+// TODO add filesize in footer
+// $postFileSize = filesize('blog/' . $filename);
+// $styleFileSize = filesize('style.min.css');
+// $postAndStylesSize = $postFileSize + $styleFileSize;
+// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
+// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
+// file_put_contents('blog/'.$filename, $postHtml);
+
 // make about.php
 $aboutContent = '';
 $aboutContent = $aboutContent . file_get_contents('includes/header.php');
@@ -156,5 +216,14 @@ $aboutContent = $aboutContent . file_get_contents('includes/footer.php');
 $aboutFile = fopen('about.php', 'w');
 fwrite($aboutFile, $aboutContent);
 fclose($aboutFile);
+
+// TODO add filesize in footer
+// $postFileSize = filesize('blog/' . $filename);
+// $styleFileSize = filesize('style.min.css');
+// $postAndStylesSize = $postFileSize + $styleFileSize;
+// $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
+// $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+// $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
+// file_put_contents('blog/'.$filename, $postHtml);
 
 ?>
