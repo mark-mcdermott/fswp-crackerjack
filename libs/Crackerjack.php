@@ -24,7 +24,8 @@ class Crackerjack
   private $footer = 'includes/footer.php';
   private $recompileOutputStyles = '<style> strong { display: inline-block; width: 150px; text-align: right; }</style>';
 
-  public function getPostsFromMdFolder($folder) {
+  // get all .md files inside a folder
+  public function getPostFilesFromMdFolder($folder) {
     return glob($folder.'/*.{md}', GLOB_BRACE);
   }
 
@@ -120,7 +121,7 @@ class Crackerjack
     return $postLines;
   }
 
-  // get title, date, excerpt, etc from post lines
+  // get title, date, excerpt, etc from post file
   public function getMeta($postFile)
   {
 
@@ -199,26 +200,13 @@ class Crackerjack
     }
   }
 
-  public function getPostsArrayFromPosts($posts) {
+  public function getPostsArrayFromPostFiles($posts) {
     $counter = 1;
     $postsArr = [];
     foreach ($posts as &$postFile) {
 
       // get title, slug, filename, date, excerpt, thumbnail, tags, mdPathAndFile, content
       $postMetaObj = $this->getMeta($postFile);
-
-      // convert post markdown to html & write html to file
-      $postHtml = $this->getHtmlPage($postMetaObj->PostMarkdown);
-      $this->writeHtmlFile($postHtml,'blog/'.$postMetaObj->Filename);
-
-      // add filesize in footer & blog active class in the nav & rewrite the file
-      $postHtml = $this->addFilesize('blog/', $postMetaObj->Filename, $postHtml);
-      $postHtml = $this->addBlogActiveClass($postHtml);
-      $this->writeHtmlFile($postHtml,'blog/'.$postMetaObj->Filename);
-
-      // output compiled post info to page
-      $this->printOutputStyles();
-      $this->outputCompiledPostMeta($counter, $postMetaObj);
 
       // push post to posts array
       array_push($postsArr,$postMetaObj);
@@ -243,8 +231,8 @@ class Crackerjack
   }
 
   public function getPostsArrFromFolder($folder) {
-    $posts = $this->getPostsFromMdFolder($folder);
-    $postsArr = $this->getPostsArrayFromPosts($posts);
+    $posts = $this->getPostFilesFromMdFolder($folder);
+    $postsArr = $this->getPostsArrayFromPostFiles($posts);
     $postsArr = $this->sortArrayByDate($postsArr);
     return $postsArr;
   }
@@ -323,6 +311,25 @@ class Crackerjack
     $this->writeHtmlFile($index,'index.php');
     $this->homepageSpecificRewrites($index);  // add filesize to footer, etc
   }
+
+  // write the blog files
+  public function writeBlogFiles($postsArr) {
+    // convert post markdown to html & write html to file
+    $this->printOutputStyles();
+    $counter = 1;
+    foreach ($postsArr as $post) {
+      $postHtml = $this->getHtmlPage($post->PostMarkdown);
+      $this->writeHtmlFile($postHtml,'blog/'.$post->Filename);
+      // add filesize in footer & blog active class in the nav & rewrite the file
+      $postHtml = $this->addFilesize('blog/', $post->Filename, $postHtml);
+      $postHtml = $this->addBlogActiveClass($postHtml);
+      $this->writeHtmlFile($postHtml,'blog/'.$post->Filename);
+      // output compiled post info to page
+      $this->outputCompiledPostMeta($counter, $post);
+      $counter++;
+    }
+  }
+
 
 
 }

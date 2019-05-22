@@ -14,13 +14,16 @@ $Crackerjack = new Crackerjack();
 $Crackerjack->deleteFolderContents('blog');
 
 // get posts array & first post
-$postsArr = $Crackerjack->getPostsArrFromFolder('posts');
+$postsArr = $Crackerjack->getPostsArrFromFolder('posts'); 
 $firstPost = $Crackerjack->getFirstPostFromSortedArr($postsArr);
 
 // write the index file
 $Crackerjack->writeIndexFile($firstPost->PostMarkdown);
 
-// make archive page
+// write the blog files
+$Crackerjack->writeBlogFiles($postsArr);
+
+// write the blog archive page
 $Crackerjack->writeArchiveFile($postsArr);
 
 // make about page
