@@ -58,9 +58,6 @@ class Crackerjack
     echo '<div><strong>Title:</strong> ' . $postObj->Title . '</div>';
     echo '<div><strong>Date:</strong> ' . $postObj->Date . '</div>';
     echo '<br>';
-    // echo '<div><strong>Excerpt:</strong> ' . $excerpt . '</div>';
-    // echo '<div><strong>Thumbnail:</strong> ' . $thumbnail . '</div>';
-    // echo '<div><strong>Tags:</strong> ' . $tags . ' </div>';
   }
 
   public function addBlogActiveClass($postHtml) {
@@ -233,6 +230,7 @@ class Crackerjack
   // sort array of posts by date, newest to oldest
   public function sortArrayByDate($postsArr) {
     // print most recent post to index
+    date_default_timezone_set('America/Chicago');
     function sortOnDate($object1, $object2) {
       return strtotime($object1->Date) < strtotime($object2->Date);
     }
@@ -317,6 +315,13 @@ class Crackerjack
     // add active class in header
     $aboutHtml = str_replace('<a href="/about.php">About</a>', '<a class="active" href="/about.php">About</a>', $aboutHtml);
     file_put_contents('about.php', $aboutHtml);
+  }
+
+  // write the index file
+  public function writeIndexFile($firstPostMarkdown) {
+    $index = $this->getHtmlPage($firstPostMarkdown);
+    $this->writeHtmlFile($index,'index.php');
+    $this->homepageSpecificRewrites($index);  // add filesize to footer, etc
   }
 
 

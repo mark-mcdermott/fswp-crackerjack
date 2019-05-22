@@ -1,10 +1,14 @@
 <?php
 
-include 'libs/Crackerjack.php';
-$Crackerjack = new Crackerjack();
+// run this file to take all the markdown posts in /posts and
+// output them all to html (php) files in /blog.  this file
+// will also generate index.php (which has the latest post),
+// blog.php (which lists all past blog posts - the archive page)
+// and about.php, a simlple content page.
 
-// move this to Crackerjack?
-date_default_timezone_set('America/Chicago');
+include 'libs/Crackerjack.php';
+
+$Crackerjack = new Crackerjack();
 
 // prep - delete the blog folder contents
 $Crackerjack->deleteFolderContents('blog');
@@ -14,9 +18,7 @@ $postsArr = $Crackerjack->getPostsArrFromFolder('posts');
 $firstPost = $Crackerjack->getFirstPostFromSortedArr($postsArr);
 
 // write the index file
-$index = $Crackerjack->getHtmlPage($firstPost->PostMarkdown);
-$Crackerjack->writeHtmlFile($index,'index.php');
-$Crackerjack->homepageSpecificRewrites($index);  // add filesize to footer, etc
+$Crackerjack->writeIndexFile($firstPost->PostMarkdown);
 
 // make archive page
 $Crackerjack->writeArchiveFile($postsArr);
