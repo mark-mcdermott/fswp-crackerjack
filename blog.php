@@ -48,8 +48,8 @@
 
           <div class="site-title-wrapper">
 
-              <h1 class="site-title"><a href="/">Fullstack Wolfpack</a></h1>
-              <h2 class="tagline">Blog, tutorials and videos about full stack skills</h2>
+            <p class="site-title"><a href="/">Fullstack Wolfpack</a></p>
+            <p class="tagline">Blog, tutorials and videos about full stack skills</p>
 
           </div>
 
@@ -104,7 +104,7 @@
             </ul>
         </nav>
       -->
-<h2>Blog</h2><div class="archiveLink"><a href="blog/how-to-transfer-files-to-and-from-amazon-ec2-with-scp.php">How to transfer files to and from Amazon EC2 with scp</a></div><div class="archiveLink"><a href="blog/software-engineering-when-it-absolutely-positively-has-to-be-done-right-the-first-time.php">Software engineering when it absolutely positively has to be done right the first time</a></div><div class="archiveLink"><a href="blog/documentation-can-help-in-surprising-ways.php">Documentation can help in surprising ways</a></div><div class="archiveLink"><a href="blog/planning-the-flashcards-section.php">Planning the flashcards section</a></div><div class="archiveLink"><a href="blog/moved-blog-from-pico-to-a-gulp-static-generator.php">Moved blog from Pico to a Gulp static generator</a></div><div class="archiveLink"><a href="blog/obligatory-first-blog-post-titled-hello-world.php">Obligatory First Blog Post Titled Hello World</a></div>
+<h2>Blog</h2><div class="archiveLink"><a href="blog/how-to-transfer-files-to-and-from-amazon-ec2-with-scp.php">How to transfer files to and from Amazon EC2 with scp</a></div><div class="archiveLink"><a href="blog/software-engineering-when-it-absolutely-positively-has-to-be-done-right-the-first-time.php">Software engineering: when it absolutely, positively has to be done right the first time</a></div><div class="archiveLink"><a href="blog/documentation-can-help-in-surprising-ways.php">Documentation can help in surprising ways</a></div><div class="archiveLink"><a href="blog/planning-the-flashcards-section.php">Planning the flashcards section</a></div><div class="archiveLink"><a href="blog/moved-blog-from-pico-to-a-gulp-static-generator.php">Moved blog from Pico to a Gulp static generator</a></div><div class="archiveLink"><a href="blog/obligatory-first-blog-post-titled-\"hello-world\".php">Obligatory First Blog Post Titled \"Hello World\"</a></div>
       </div>
 
     </main>

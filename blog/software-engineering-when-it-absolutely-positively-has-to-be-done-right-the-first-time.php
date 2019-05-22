@@ -48,8 +48,8 @@
 
           <div class="site-title-wrapper">
 
-              <h1 class="site-title"><a href="/">Fullstack Wolfpack</a></h1>
-              <h2 class="tagline">Blog, tutorials and videos about full stack skills</h2>
+            <p class="site-title"><a href="/">Fullstack Wolfpack</a></p>
+            <p class="tagline">Blog, tutorials and videos about full stack skills</p>
 
           </div>
 
