@@ -309,6 +309,7 @@ class Crackerjack
   // write the index file
   public function writeIndexFile($firstPost) {
     $markdown = '##' . $firstPost->Title . "\n";
+    $markdown = $markdown . $firstPost->Date . ' by Mark' . "\n\n";
     $markdown = $markdown . $firstPost->PostMarkdown;
     $index = $this->getHtmlPageFromMarkdown($markdown);
     $this->writeHtmlFile($index,'index.php');

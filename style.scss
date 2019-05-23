@@ -73,17 +73,39 @@ header{
     }
   }
 }
- 
+
 main {
-  padding: .5em 0 4em;
-  background: #fff;
+  padding: 2em 0 4em;
+  background: #f3f3f3;
   min-height: 22em;
+
+  .container {
+    @media (min-width: 576px) { max-width: 540px; }
+    @media (min-width: 768px) { max-width: 720px; }
+    @media (min-width: 992px) { max-width: 960px; }
+    @media (min-width: 1200px) { max-width: 1140px; }
+  }
+
+  // post title
+  h2 {
+    margin: .5em 0 0;
+  }
+
   a {
     color: $gray;
   }
   p {
     margin: 0 0 1em;
   }
+
+  code,
+  pre {
+    background: #e2dddd;
+        display: inline-block;
+        border: 1px solid #291414;
+        padding: 1em;
+  }
+
 }
 
 footer {

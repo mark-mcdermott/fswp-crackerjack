@@ -105,6 +105,7 @@
         </nav>
       -->
 <h2>How to transfer files to and from Amazon EC2 with scp</h2>
+<p>2/14/19 by Mark</p>
 <p>Transferring files through the terminal can be a real pain, compared to a drag and drop GUI like Filezilla.  But when you know the syntax, it gets a lot easier.  When you are uploading/downloading files to an amazon EC2 ubuntu box, you'll need the pemfile location on your computer.</p>
 <h3>To upload from local computer to EC2</h3>
 <p><code>scp -i &lt;localpath&gt;/pemfile.pem &lt;localpath&gt;/localfile.zip ubuntu@&lt;ipaddress&gt;:&lt;remotepath&gt;/destinationfile.zip</code></p>
