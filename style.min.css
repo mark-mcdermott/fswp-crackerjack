@@ -15,7 +15,7 @@ header .site-nav ul li { margin: 0 0 0 1em; display: inline-block; }
 header .site-nav ul li a { padding: 0 0 2px; color: #fff; font-weight: bold; font-size: 1.15rem; text-decoration: none; }
 header .site-nav ul li a.active, header .site-nav ul li a:hover { color: #fff63a; border-bottom: 1px solid #fff63a; }
 
-main { padding: 2.5em 0 4em; background: #fff; min-height: 22em; }
+main { padding: 1em 0 4em; background: #fff; min-height: 22em; }
 main a { color: #444; }
 main p { margin: 0 0 1em; }
 
