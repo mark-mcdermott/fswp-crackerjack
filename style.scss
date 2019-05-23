@@ -37,6 +37,10 @@ header{
         text-decoration: none;
       }
     }
+    p {
+      font-size: 2em;
+      font-weight: bold;
+    }
     .tagline {
       padding: 0 0 2em;
       margin: 0;
@@ -59,7 +63,7 @@ header{
           font-weight: bold;
           font-size: 1.15rem;
           text-decoration: none;
-          &.active, 
+          &.active,
           &:hover {
             color: $yellow;
             border-bottom: 1px solid $yellow;

@@ -104,6 +104,7 @@
             </ul>
         </nav>
       -->
+<h2>Software engineering: when it absolutely, positively has to be done right the first time</h2>
 <p>In my software engineering program, we talk a lot about mission critical projects.  Software needs to be really engineered and architected when in those cases when there can't be any mistakes when the code first goes into production&mdash;the code for space rockets, the code for military applications. No one dies when Facebook goes down for a minute, but when there's a divide by zero error in a manned rocket, results can be catastrophic.  It reminds me of that FedEx commercial&mdash;"When it absolutely, positively", must be done right the first time.</p>
 <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/YboNZ73BJRE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
       </div>
@@ -114,7 +115,7 @@
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 6 kB</p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 7 kB</p>
     </div>
   </footer>
 

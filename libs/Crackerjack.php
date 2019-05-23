@@ -29,7 +29,7 @@ class Crackerjack
     return glob($folder.'/*.{md}', GLOB_BRACE);
   }
 
-  public function getHtmlPage($postMarkdown) {
+  public function getHtmlPageFromMarkdown($postMarkdown) {
     $Parsedown = new Parsedown();
     $postHtml = '';
     $postHtml = $postHtml . $this->getHeader();
@@ -289,6 +289,7 @@ class Crackerjack
     $Parsedown = new Parsedown();
     $aboutContent = '';
     $aboutContent = $aboutContent . file_get_contents('includes/header.php');
+    $aboutContent = $aboutContent . '<h2>About</h2>';
     $aboutContent = $aboutContent . $Parsedown->text(file_get_contents('pages/about.md'));
     $aboutContent = $aboutContent . file_get_contents('includes/footer.php');
     $aboutFile = fopen('about.php', 'w');
@@ -306,8 +307,10 @@ class Crackerjack
   }
 
   // write the index file
-  public function writeIndexFile($firstPostMarkdown) {
-    $index = $this->getHtmlPage($firstPostMarkdown);
+  public function writeIndexFile($firstPost) {
+    $markdown = '##' . $firstPost->Title . "\n";
+    $markdown = $markdown . $firstPost->PostMarkdown;
+    $index = $this->getHtmlPageFromMarkdown($markdown);
     $this->writeHtmlFile($index,'index.php');
     $this->homepageSpecificRewrites($index);  // add filesize to footer, etc
   }
@@ -318,7 +321,9 @@ class Crackerjack
     $this->printOutputStyles();
     $counter = 1;
     foreach ($postsArr as $post) {
-      $postHtml = $this->getHtmlPage($post->PostMarkdown);
+      $markdown = '##' . $post->Title . "\n";
+      $markdown = $markdown . $post->PostMarkdown;
+      $postHtml = $this->getHtmlPageFromMarkdown($markdown);
       $this->writeHtmlFile($postHtml,'blog/'.$post->Filename);
       // add filesize in footer & blog active class in the nav & rewrite the file
       $postHtml = $this->addFilesize('blog/', $post->Filename, $postHtml);

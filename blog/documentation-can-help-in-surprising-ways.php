@@ -104,6 +104,7 @@
             </ul>
         </nav>
       -->
+<h2>Documentation can help in surprising ways</h2>
 <p>I had the funny experience today of benefitting myself from onboarding documentation I'd written years earlier.  I started back at Kasasa, where I'd worked for four years, ending two years ago.  Trying to relearn the systems today, I opened up the onboarding documentation and part way through reading it, I realised I'd written it. I wrote it to help other new folks at the time, but it was a real lifesaver today. Goes to show how much documentation can really help!</p>
       </div>
 
