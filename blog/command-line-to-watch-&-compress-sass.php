@@ -104,7 +104,10 @@
             </ul>
         </nav>
       -->
-<h2>Blog</h2><div class="archiveLink"><span class="post-date">2/18/19</span><a href="blog/command-line-to-watch-&-compress-sass.php">Command Line To Watch & Compress Sass</a></div><div class="archiveLink"><span class="post-date">2/17/19</span><a href="blog/css-calc.php">CSS Calc</a></div><div class="archiveLink"><span class="post-date">2/16/19</span><a href="blog/sass-interpolation.php">Sass Interpolation</a></div><div class="archiveLink"><span class="post-date">2/15/19</span><a href="blog/beware-of-forward-slash-in-rm.php">Beware Of Forward Slash In rm</a></div><div class="archiveLink"><span class="post-date">2/14/19</span><a href="blog/how-to-transfer-files-to-and-from-amazon-ec2-with-scp.php">How to transfer files to and from Amazon EC2 with scp</a></div><div class="archiveLink"><span class="post-date">2/13/19</span><a href="blog/software-engineering-when-it-absolutely-positively-has-to-be-done-right-the-first-time.php">Software engineering: when it absolutely, positively has to be done right the first time</a></div><div class="archiveLink"><span class="post-date">2/12/19</span><a href="blog/documentation-can-help-in-surprising-ways.php">Documentation can help in surprising ways</a></div><div class="archiveLink"><span class="post-date">2/11/19</span><a href="blog/removing-all-files-and-directories-including-hidden-ones.php">Removing All Files And Directories, Including Hidden Ones</a></div><div class="archiveLink"><span class="post-date">2/10/19</span><a href="blog/moved-blog-from-pico-to-a-gulp-static-generator.php">Moved blog from Pico to a Gulp static generator</a></div><div class="archiveLink"><span class="post-date">2/9/19</span><a href="blog/obligatory-first-blog-post-titled-\"hello-world\".php">Obligatory First Blog Post Titled \"Hello World\"</a></div>
+<h2>Command Line To Watch &amp; Compress Sass</h2>
+<p>Excerpt:
+Tags: Sass</p>
+<p>If you want to both watch your .scss for changes and to output minified css, the command is <code>sass --watch filetowatch.scss:outputfile.css --style compressed</code></p>
       </div>
 
     </main>
@@ -113,7 +116,7 @@
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 8 kB</p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 6 kB</p>
     </div>
   </footer>
 
