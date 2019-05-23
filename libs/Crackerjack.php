@@ -262,10 +262,11 @@ class Crackerjack
     $archiveList = '';
     $archiveTitle = '<h2>Blog</h2>';
     foreach($postsArr as $post){
-      $thisTitle = $post->Title;
-      $thisLink = '<a href="blog/' . $post->Filename . '">' . $thisTitle . '</a>';
-      $thisDiv = '<div class="archiveLink">' . $thisLink . '</div>';
-      $archiveList = $archiveList . $thisDiv;
+      $date = '<span class="post-date">' . $post->Date . '</span>';
+      $title = $post->Title;
+      $link = '<a href="blog/' . $post->Filename . '">' . $title . '</a>';
+      $div = '<div class="archiveLink">' . $date . $link . '</div>';
+      $archiveList = $archiveList . $div;
     }
     $archive = $archive . file_get_contents('includes/header.php');
     $archive = $archive . $archiveTitle . $archiveList;

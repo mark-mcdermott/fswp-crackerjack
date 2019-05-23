@@ -1,6 +1,8 @@
 $black: #1c1c1c;
 $gray: #444;
 $yellow: #fff63a;
+$darkyellow: #d0c71a;
+$orange: #da8833;
 
 html {
   font-size: 16px;
@@ -93,6 +95,9 @@ main {
 
   a {
     color: $gray;
+    &:hover {
+      color: $darkyellow;
+    }
   }
   p {
     margin: 0 0 1em;
@@ -105,6 +110,23 @@ main {
         border: 1px solid #291414;
         padding: 1em;
   }
+
+  // archive
+  .archiveLink {
+    display: flex;
+    align-items: flex-start;
+
+    .post-date {
+      display: inline-block;
+      width: 75px;
+      color: #a7a4a4;
+    }
+    a {
+      display: inline-block;
+      max-width: calc(100% - 75px);
+    }
+  }
+
 
 }
 
