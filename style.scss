@@ -8,7 +8,7 @@ html {
   font-size: 16px;
 }
 
-body { 
+body {
   margin: 0;
   color: $gray;
   font-size: 1.1rem;
@@ -103,12 +103,19 @@ main {
     margin: 0 0 1em;
   }
 
-  code,
-  pre {
+  code {
     background: #e2dddd;
+    border: 1px solid #c1c1c1;
+    padding: .25em .5em;
+    white-space: pre-wrap;  
+    word-wrap: break-word;
+  }
+
+  pre {
+    code {
         display: inline-block;
-        border: 1px solid #291414;
         padding: 1em;
+    }
   }
 
   // archive

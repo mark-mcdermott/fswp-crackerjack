@@ -104,11 +104,17 @@
             </ul>
         </nav>
       -->
-<h2>Command Line To Watch &amp; Compress Sass</h2>
-<p>2/18/19 by Mark</p>
-<p>Excerpt:
-Tags: Sass</p>
-<p>If you want to both watch your .scss for changes and to output minified css, the command is <code>sass --watch filetowatch.scss:outputfile.css --style compressed</code></p>
+<h2>Installing Apache &amp; PHP 7.2 On A New Linux Box</h2>
+<p>2/19/19 by Mark</p>
+<pre><code>apt-get update
+apt-get install apache2
+apt-get install php7.2</code></pre>
+<p>If you need sudo permissions:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install php7.2</code></pre>
+<p>You can also chain this in a one-liner:</p>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get install apache2 &amp;&amp; sudo apt-get install php7.2</code></pre>
       </div>
 
     </main>
@@ -117,7 +123,7 @@ Tags: Sass</p>
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 6 kB</p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 7 kB</p>
     </div>
   </footer>
 

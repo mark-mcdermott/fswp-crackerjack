@@ -104,7 +104,7 @@
             </ul>
         </nav>
       -->
-<h2>Obligatory First Blog Post Titled \"Hello World\"</h2>
+<h2>Obligatory First Blog Post Titled Hello World</h2>
 <p>I once had a Computer Architecture professor who said if your first program in any programming language you're learning isn't the classic Hello World program, you're destined to have lots of bad luck forever in learning the language.</p>
 <p>I've been meaning to make a programming blog for awhile. Sijin Joseph has a good chart that shows how mature a software developer you are and one of the landmarks is that you have your own blog and make posts with your findings and learnings. I used to maintain a javascript/html tutorial site with text posts and youtube vids and found it to be a great experience, but I've never found the time to do a regular programming blog until now.</p>
 <p>I'm in one of those transition points in my career—yesterday was my last day at Charles Schwab and I start a six month contract at Kasasa Monday. I've been studying up for those hard whiteboarding interviews with data structures and reversing binary trees and all that. A blog and tutorial site would be a good place for me to keep my thoughts and it might benefit others learning the same stuff.</p>
