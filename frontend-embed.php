@@ -61,7 +61,7 @@
                 </li>
 
                   <li>
-                  <a class="active" href="/blog.php">Blog</a>
+                  <a href="/blog.php">Blog</a>
                 </li>
 
                 <!--
@@ -75,8 +75,16 @@
                 </li>
               -->
 
-                  <li class="hidable">
+                  <li>
                   <a href="/about.php">About</a>
+                </li>
+
+                <li class="hidable">
+                  <a class="active" href="/frontend-embed.php">Frontend Embed</a>
+                </li>
+
+                <li class="hidable">
+                  <a href="/backend-embed.php">Backend Embed</a>
                 </li>
 
               </ul>
@@ -104,10 +112,7 @@
             </ul>
         </nav>
       -->
-<h2>Beware Of Forward Slash In rm</h2>
-<p>Excerpt:
-Tags: Linux</p>
-<p>Beware of a / when using the rm command.  A stand alone slash means root folder, so rm /* will delete your whole filesystem.</p>
+<h2>Frontend Embed</h2><iframe src="https://codesandbox.io/embed/new?fontsize=14" title="new" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
       </div>
 
     </main>
@@ -116,7 +121,7 @@ Tags: Linux</p>
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 6 kB</p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 7 kB</p>
     </div>
   </footer>
 

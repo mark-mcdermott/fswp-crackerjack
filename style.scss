@@ -1,8 +1,24 @@
 $black: #1c1c1c;
+$white: #fff;
 $gray: #444;
 $yellow: #fff63a;
-$darkyellow: #d0c71a;
-$orange: #da8833;
+$aqua: #379c99;
+$purple: #aa73d2;
+
+@mixin breakpoint($point) {
+  @if $point == lg {
+    @media (min-width: 1140px) { @content ; }
+ }
+  @else if $point == md {
+    @media (min-width: 976px) { @content ; }
+ }
+   @else if $point == sm {
+    @media (min-width: 577px) { @content ; }
+ }
+ @else if $point == xs {
+    @media (max-width: 577px)  { @content ; }
+ }
+}
 
 html {
   font-size: 16px;
@@ -13,7 +29,16 @@ body {
   color: $gray;
   font-size: 1.1rem;
   line-height: 1.6;
+  overflow-x: hidden;
+  background: $black;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+  &:link { color: $aqua; }
+  &:visited { color: $aqua; }
+  &:hover { color: lighten($aqua,15%); }
+  &:active { color: lighten($aqua,15%); }
 }
 
 .container {
@@ -22,23 +47,221 @@ body {
   max-width: 60em;
 }
 
+  /*** MOBILE NAV ***/
+  /* https://codepen.io/erikterwan/pen/EVzeRP */
+
+.mobile-nav {
+  display: none;
+  @include breakpoint(xs) {
+    display: block;
+  }
+  a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+}
+
+#menuToggle
+{
+  position: relative;
+  display: block;
+  // top: 50px;
+  // right: 0;
+  z-index: 3;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 35px;
+  height: 29px;
+  position: absolute;
+  top: 18px;
+  right: 27px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 6; /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle {
+
+  .burger {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    z-index: 5;
+
+    span {
+      display: block;
+      width: 33px;
+      height: 4px;
+      margin: 6px 0;
+      background: #fff;
+      border-radius: 3px;
+      z-index: 5;
+      transform-origin: 22px 2px; // 4px 0
+      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                  opacity 0.55s ease;
+      &:first-child {
+        transform-origin: 0% 0%;
+      }
+      &:span:nth-last-child(2) {
+        transform-origin: 0% 100%;
+      }
+    }
+  }
+}
+
+
+
+/*
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ .burger span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: $white;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ .burger span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ .burger span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  position: absolute;
+  // width: 100vw;
+  // height: 100vw;
+  margin: 0;
+  padding: 50px 35px;
+  top: 0;
+  // margin: -100px 0 0 -50px;
+  // padding: 50px;
+  padding-top: 25px;
+  background: $black;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  z-index: 2;
+  transform-origin: 0% 0%;
+  transform: translate(0, -100vh);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: calc(100vh + 50px);
+    position: absolute;
+    left: 0;
+    top: -50px;;
+    z-index: 1;
+    background: $black;
+  }
+
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+  position: relative;
+  z-index: 5;
+  a {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $white;
+    &:hover { color: $yellow; }
+  }
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+
+
+
+
 header{
   background: $black;
 
   .container {
-    padding-top: 1.53em;
+    padding-top: 1.5em;
     display: flex;
     justify-content: space-between;
+
+    @include breakpoint(xs) {
+      padding-top: 1em;
+    }
+
   }
 
+
+
   .site-title-wrapper {
+    padding: 0 0 0 80px;
+    max-width: calc(100% - 42px);
+    position: relative;
+    cursor: pointer;
+
+    @include breakpoint(xs) { padding: 0 0 0 45px; }
+    @include breakpoint(sm) { padding: 0 0 0 63px; margin: 0 0 13px; }
+    @include breakpoint(md) { padding: 0 0 0 85px; }
+
+    &:before {
+      content: '';
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 0;
+      top: 10px;
+      background: url(images/logo.png) no-repeat 0 0;
+
+      @include breakpoint(xs) { background-size: 28px; top: 7px; }
+      @include breakpoint(sm) { background-size: 43px; top: 9px; }
+      @include breakpoint(md) { background-size: 61px; }
+
+
+    }
+
     .site-title {
       margin: 0;
+      font-size: 2em;
       a {
         color: $yellow;
         text-decoration: none;
       }
     }
+
     p {
       font-size: 2em;
       font-weight: bold;
@@ -48,10 +271,33 @@ header{
       margin: 0;
       color: #fff;
       font-weight: normal;
-      font-size: 1em;
+      font-size: .6em;
     }
+
+    @include breakpoint(xs) {
+      .site-title { font-size: 1em; }
+      .tagline { font-size: .5em; }
+    }
+
+    @include breakpoint(sm) {
+      .site-title { font-size: 1.5em; }
+      .tagline { font-size: .6em; margin: 0 0 0 2px; }
+    }
+
+    @include breakpoint(md) {
+      .site-title { font-size: 2em; }
+      .tagline { font-size: 1em; }
+    }
+
+
+
   }
+
+
+
   .site-nav {
+    @include breakpoint(xs) { display: none; }
+
     ul {
       margin: 0;
       padding: 0;
@@ -65,11 +311,22 @@ header{
           font-weight: bold;
           font-size: 1.15rem;
           text-decoration: none;
+
+          @include breakpoint(xs) {
+            font-size: .75rem;
+          }
+
+
+
           &.active,
           &:hover {
             color: $yellow;
+          }
+
+          &.active {
             border-bottom: 1px solid $yellow;
           }
+
         }
       }
     }
@@ -90,24 +347,19 @@ main {
 
   // post title
   h2 {
-    margin: .5em 0 0;
+    margin: .25em 0 .2em;
+    line-height: 1.2;
   }
 
-  a {
-    color: $gray;
-    &:hover {
-      color: $darkyellow;
-    }
-  }
   p {
-    margin: 0 0 1em;
+    margin: 0 0 1.2em;
   }
 
   code {
     background: #e2dddd;
     border: 1px solid #c1c1c1;
     padding: .25em .5em;
-    white-space: pre-wrap;  
+    white-space: pre-wrap;
     word-wrap: break-word;
   }
 
@@ -146,9 +398,9 @@ footer {
     a {
       color: $yellow;
       text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
+      &:link { color: $yellow; }
+      &:visited { color: $yellow; }
+      &:hover { text-decoration: underline; }
     }
   }
 }

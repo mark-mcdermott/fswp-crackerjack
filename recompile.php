@@ -29,4 +29,10 @@ $Crackerjack->writeArchiveFile($postsArr);
 // make about page
 $Crackerjack->writeAboutFile();
 
+// make frontend embed page
+// $Crackerjack->writeFrontendEmbedFile();
+
+// make backend embed page
+// $Crackerjack->writeBackendEmbedFile();
+
 ?>

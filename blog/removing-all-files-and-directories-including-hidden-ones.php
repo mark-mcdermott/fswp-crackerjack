@@ -3,19 +3,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title lang="en">Fullstack Wolfpack</title>
     <meta name="description" content="test site description">
+    <link rel="icon" href="/images/favicon/favicon-32.png" sizes="32x32">
+    <link rel="icon" href="/images/favicon/favicon-128.png" sizes="128x128">
+    <link rel="icon" href="/images/favicon/favicon-192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/images/favicon/favicon-120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="path/to/favicon-152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="path/to/favicon-180.png" sizes="180x180">
+    <meta name="msapplication-TileColor" content="#fefefe"/>
+    <meta name="msapplication-square70x70logo" content="favicon-128.png"/>
+    <meta name="msapplication-square150x150logo" content="favicon-270.png"/>
+    <meta name="msapplication-TileImage" content="favicon-270.png"/>
+    <meta name="msapplication-config" content="none"/>
     <link href="/style.min.css" rel="stylesheet">
 </head>
 
 <body class="home">
 
   <!--   Mobile nav from https://codepen.io/erikterwan/pen/EVzeRP -->
-  <!--
+
   <nav class="mobile-nav" role="navigation">
-    <div id="menuToggle"> -->
-      <!-- hidden checkbox, is used as click reciever for :checked --><!--
-      <input type="checkbox"> -->
-      <!-- spans for hamburger icon--><!--
-      <span></span><span></span><span></span>
+    <div id="menuToggle">
+      <!-- hidden checkbox, is used as click reciever for :checked -->
+      <input type="checkbox">
+      <!-- spans for hamburger icon-->
+      <div class="burger">
+        <span></span><span></span><span></span>
+      </div>
       <ul id="menu">
 
           <li class="hidable">
@@ -23,9 +36,10 @@
         </li>
 
           <li>
-          <a href="/blog.html">Blog</a>
+          <a class="active" href="/blog.php">Blog</a>
         </li>
 
+          <!--
           <li>
           <a href="/lessons.html">Lessons</a>
         </li>
@@ -33,23 +47,25 @@
           <li>
           <a href="/flashcards.html">Flashcards</a>
         </li>
+      -->
 
           <li class="hidable">
-          <a href="/about.html">About</a>
+          <a href="/about.php">About</a>
         </li>
 
 
       </ul>
     </div>
-  </nav>-->
+  </nav>
 
   <header>
       <div class="container">
 
-          <div class="site-title-wrapper">
+          <div class="site-title-wrapper" id="logo-wrapper">
 
             <p class="site-title"><a href="/">Fullstack Wolfpack</a></p>
-            <p class="tagline">Blog, tutorials and videos about full stack skills</p>
+            <p class="tagline">Blog about full stack programming skills</p>
+            <!-- <p class="tagline">Blog, tutorials and videos about full stack skills</p> -->
 
           </div>
 
@@ -75,9 +91,19 @@
                 </li>
               -->
 
-                  <li class="hidable">
+                  <li>
                   <a href="/about.php">About</a>
                 </li>
+
+                <!--
+                <li class="hidable">
+                  <a href="/frontend-embed.php">Frontend Embed</a>
+                </li>
+
+                <li class="hidable">
+                  <a href="/backend-embed.php">Backend Embed</a>
+                </li>
+                -->
 
               </ul>
           </nav>
@@ -105,9 +131,14 @@
         </nav>
       -->
 <h2>Removing All Files And Directories, Including Hidden Ones</h2>
-<p>Excerpt:
-Tags: Linux</p>
-<p>On Linux, to remove all files and directories in a folder, including hidden ones, use <code>rm -r * .*</code>  rm is for remove.  The -r flag is for recursive so it will delete folders. The first asterisk means delete all files and directories in the current folder.  The .* means delete any files/folders that begin with a period.  Since hidden folders and files start with a period, this removes hidden files/folders.</p>
+<p class="date">2/11/19  by Mark McDermott</p>
+<p>When working with git On Linux, to remove all files and directories in a folder, including hidden ones, use</p>
+<pre><code>rm -r * .*</code></pre>
+<p>The <code>rm</code> is for remove.  The <code>-r</code> flag is for recursive so it will delete folders. The first <code>*</code> means, "delete all files and directories in the current folder".  The <code>.*</code> means delete any files/folders that begin with a period.  Since hidden folders and files start with a period, this removes hidden files/folders. Hidden directories will be ignored by rm by default if you don't specify <code>.*</code>.</p>
+<p>I work with git a lot and there's always the hidden .git folder and usually I also like to add a .gitignore file. This is great until I need to delete the parent folder. I was a bit confounded until I found the <code>.*</code> input to rm which takes care of it.  One thing to note is that rm will throw an non-fatal error message:</p>
+<pre><code>rm: refusing to remove '.' or '..' directory: skipping '.'
+rm: refusing to remove '.' or '..' directory: skipping '..'</code></pre>
+<p>This is fine. The . and .. are the "names" of the current folder and its parent folder, respectively. A linux directory is really just a list of names (and inode numbers) of the files and directories inside it.  The . and .. cannot and should not be removed.  <a href="http://teaching.idallen.com/cst8207/13w/notes/450_file_system.html">Here</a> is a good explanation of how inodes and Linux directories work, if you're interested.</p>
       </div>
 
     </main>
@@ -116,8 +147,28 @@ Tags: Linux</p>
 
     <div class="container">
       <p>©2019 <a href="http://markmcdermott.io" data-external="true">Mark McDermott</a>
-        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 7 kB</p>
+        <br>Built with <a href="https://github.com/mark-mcdermott/crackerjack" data-external="true">Crackerjack</a> in < 36 kB</p>
     </div>
   </footer>
 
-</body></html>
+</body>
+
+<script>
+  window.onload= function() {
+
+      var logo = document.getElementById('logo-wrapper');
+      logo.addEventListener('click', function(e) {
+        var url = this.querySelector('a').href;
+        window.location = url;
+        e.preventDefault();
+      });
+
+
+      // .click(function(e){
+      //   var link = this.querySelector('a')[0].href;
+      //   console.log(link);
+      // });
+  };
+</script>
+
+</html>

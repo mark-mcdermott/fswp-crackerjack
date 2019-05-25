@@ -48,7 +48,7 @@ class Crackerjack
     $postFileSize = filesize($path . $filename);
     $styleFileSize = filesize('style.min.css');
     $postAndStylesSize = $postFileSize + $styleFileSize;
-    $formattedBothSize = ceil($postAndStylesSize / 1000 + 1);
+    $formattedBothSize = ceil($postAndStylesSize / 1000 + 23); // + 21k for logo & 2k for favicon
     $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
     $postHtml = str_replace('Crackerjack</a>', $sizeBlurb, $postHtml);
     return $postHtml;
@@ -106,7 +106,6 @@ class Crackerjack
     $slug = str_replace(":","",$postTitle);
     $slug = str_replace(",","",$slug);
     return str_replace(" ","-",strtolower($slug));
-
   }
 
   // get post filename
@@ -177,20 +176,16 @@ class Crackerjack
       'Slug' => $slug,
       'Filename' => $filename
     ];
-
     return $metaObj;
-
   }
 
   // print output css styles for recompile.php page
-  public function printOutputStyles()
-  {
+  public function printOutputStyles() {
     echo $this->recompileOutputStyles;
   }
 
   // delete everything in blog folder
-  public function deleteFolderContents($blogFolder)
-  {
+  public function deleteFolderContents($blogFolder) {
     $folder = $blogFolder;
     $files = glob($folder . '/*');
     foreach($files as $file){
@@ -200,14 +195,13 @@ class Crackerjack
     }
   }
 
+  // get post array from the list of post files
   public function getPostsArrayFromPostFiles($posts) {
     $counter = 1;
     $postsArr = [];
     foreach ($posts as &$postFile) {
-
       // get title, slug, filename, date, excerpt, thumbnail, tags, mdPathAndFile, content
       $postMetaObj = $this->getMeta($postFile);
-
       // push post to posts array
       array_push($postsArr,$postMetaObj);
       $counter++;
@@ -226,10 +220,12 @@ class Crackerjack
     return $postsArr;
   }
 
+  // get first post from sorted array
   public function getFirstPostFromSortedArr($postArr) {
     return $postArr[0];
   }
 
+  // get post array from post folder
   public function getPostsArrFromFolder($folder) {
     $posts = $this->getPostFilesFromMdFolder($folder);
     $postsArr = $this->getPostsArrayFromPostFiles($posts);
@@ -243,7 +239,7 @@ class Crackerjack
     $postFileSize = filesize('index.php');
     $styleFileSize = filesize('style.min.css');
     $indexAndStylesSize = $postFileSize + $styleFileSize;
-    $formattedBothSize = ceil($indexAndStylesSize / 1000 + 1);
+    $formattedBothSize = ceil($indexAndStylesSize / 1000 + 1 + 23);  // 23 = logo + favicon
     $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
     // start rewriting the markup
     $indexHtml = str_replace('Crackerjack</a>', $sizeBlurb, $index);
@@ -277,7 +273,7 @@ class Crackerjack
     $archiveFileSize = filesize('blog.php');
     $styleFileSize = filesize('style.min.css');
     $archiveAndStylesSize = $archiveFileSize + $styleFileSize;
-    $formattedBothSize = ceil($archiveAndStylesSize / 1000 + 1);
+    $formattedBothSize = ceil($archiveAndStylesSize / 1000 + 1 + 23);  // 23 = logo + favicon;
     $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
     $archiveHtml = str_replace('Crackerjack</a>', $sizeBlurb, $archive);
     // add active class in header
@@ -299,7 +295,7 @@ class Crackerjack
     $aboutFileSize = filesize('about.php');
     $styleFileSize = filesize('style.min.css');
     $aboutAndStylesSize = $aboutFileSize + $styleFileSize;
-    $formattedBothSize = ceil($aboutAndStylesSize / 1000 + 1);
+    $formattedBothSize = ceil($aboutAndStylesSize / 1000 + 1 + 23);  // 23 = logo + favicon;
     $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
     $aboutHtml = str_replace('Crackerjack</a>', $sizeBlurb, $aboutContent);
     // add active class in header
@@ -307,10 +303,54 @@ class Crackerjack
     file_put_contents('about.php', $aboutHtml);
   }
 
+  // make frontend-embed.php
+  public function writeFrontendEmbedFile() {
+    $Parsedown = new Parsedown();
+    $codingContent = '';
+    $codingContent = $codingContent . file_get_contents('includes/header.php');
+    $codingContent = $codingContent . '<h2>Frontend Embed</h2>';
+    $codingContent = $codingContent . $Parsedown->text(file_get_contents('pages/frontend-embed.md'));
+    $codingContent = $codingContent . file_get_contents('includes/footer.php');
+    $codingFile = fopen('frontend-embed.php', 'w');
+    fwrite($codingFile, $codingContent);
+    fclose($codingFile);
+    $codingFileSize = filesize('frontend-embed.php');
+    $styleFileSize = filesize('style.min.css');
+    $codingAndStylesSize = $codingFileSize + $styleFileSize;
+    $formattedBothSize = ceil($codingAndStylesSize / 1000 + 1);
+    $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+    $codingHtml = str_replace('Crackerjack</a>', $sizeBlurb, $codingContent);
+    // add active class in header
+    $codingHtml = str_replace('<a href="/frontend-embed.php">Frontend Embed</a>', '<a class="active" href="/frontend-embed.php">Frontend Embed</a>', $codingHtml);
+    file_put_contents('frontend-embed.php', $codingHtml);
+  }
+
+  // make backend-embed.php
+  public function writeBackendEmbedFile() {
+    $Parsedown = new Parsedown();
+    $codingContent = '';
+    $codingContent = $codingContent . file_get_contents('includes/header.php');
+    $codingContent = $codingContent . '<h2>Backend Embed</h2>';
+    $codingContent = $codingContent . $Parsedown->text(file_get_contents('pages/backend-embed.md'));
+    $codingContent = $codingContent . file_get_contents('includes/footer.php');
+    $codingFile = fopen('backend-embed.php', 'w');
+    fwrite($codingFile, $codingContent);
+    fclose($codingFile);
+    $codingFileSize = filesize('backend-embed.php');
+    $styleFileSize = filesize('style.min.css');
+    $codingAndStylesSize = $codingFileSize + $styleFileSize;
+    $formattedBothSize = ceil($codingAndStylesSize / 1000 + 1);
+    $sizeBlurb = 'Crackerjack</a> in < ' . $formattedBothSize . ' kB';
+    $codingHtml = str_replace('Crackerjack</a>', $sizeBlurb, $codingContent);
+    // add active class in header
+    $codingHtml = str_replace('<a href="/backend-embed.php">Backend Embed</a>', '<a class="active" href="/backend-embed.php">Backend Embed</a>', $codingHtml);
+    file_put_contents('backend-embed.php', $codingHtml);
+  }
+
   // write the index file
   public function writeIndexFile($firstPost) {
     $markdown = '##' . $firstPost->Title . "\n";
-    $markdown = $markdown . $firstPost->Date . ' by Mark' . "\n\n";
+    $markdown = $markdown . $firstPost->Date . ' by Mark McDermott' . "\n\n";
     $markdown = $markdown . $firstPost->PostMarkdown;
     $index = $this->getHtmlPageFromMarkdown($markdown);
     $this->writeHtmlFile($index,'index.php');
@@ -323,7 +363,13 @@ class Crackerjack
     $this->printOutputStyles();
     $counter = 1;
     foreach ($postsArr as $post) {
-      $markdown = '##' . $post->Title . "\n";
+
+      echo $post->Title;
+      echo '<br>';
+      echo $post->Date;
+
+      $markdown = '##'. $post->Title . "\n";
+      $markdown = $markdown . '<p class="date">' . $post->Date . "  by Mark McDermott</p>\n";
       $markdown = $markdown . $post->PostMarkdown;
       $postHtml = $this->getHtmlPageFromMarkdown($markdown);
       $this->writeHtmlFile($postHtml,'blog/'.$post->Filename);
@@ -332,7 +378,7 @@ class Crackerjack
       $postHtml = $this->addBlogActiveClass($postHtml);
       $this->writeHtmlFile($postHtml,'blog/'.$post->Filename);
       // output compiled post info to page
-      $this->outputCompiledPostMeta($counter, $post);
+      // $this->outputCompiledPostMeta($counter, $post);
       $counter++;
     }
   }

@@ -11,4 +11,24 @@
     </div>
   </footer>
 
-</body></html>
+</body>
+
+<script>
+  window.onload= function() {
+
+      var logo = document.getElementById('logo-wrapper');
+      logo.addEventListener('click', function(e) {
+        var url = this.querySelector('a').href;
+        window.location = url;
+        e.preventDefault();
+      });
+
+
+      // .click(function(e){
+      //   var link = this.querySelector('a')[0].href;
+      //   console.log(link);
+      // });
+  };
+</script>
+
+</html>

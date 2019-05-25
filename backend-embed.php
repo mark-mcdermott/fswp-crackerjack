@@ -61,7 +61,7 @@
                 </li>
 
                   <li>
-                  <a class="active" href="/blog.php">Blog</a>
+                  <a href="/blog.php">Blog</a>
                 </li>
 
                 <!--
@@ -75,8 +75,16 @@
                 </li>
               -->
 
-                  <li class="hidable">
+                  <li>
                   <a href="/about.php">About</a>
+                </li>
+
+                <li class="hidable">
+                  <a href="/frontend-embed.php">Frontend Embed</a>
+                </li>
+
+                <li class="hidable">
+                  <a class="active" href="/backend-embed.php">Backend Embed</a>
                 </li>
 
               </ul>
@@ -104,10 +112,17 @@
             </ul>
         </nav>
       -->
-<h2>Sass Interpolation</h2>
-<p>Excerpt:
-Tags: Sass</p>
-<p>Interpolation in Sass outputs the result of a Sass expression.  It is a handy feature for using Sass variables in the calc() css function. To use Sass interpolation, wrap the expression (in this case, the variable) in <code>#{ }</code>. So you could do something like <code>calc(50% - #{$width})</code>.</p>
+<h2>Backend Embed</h2><script>
+SEC_HTTPS = true;
+SEC_BASE = "compilers.widgets.sphere-engine.com";
+(function(d, s, id){ SEC = window.SEC || (window.SEC = []);
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;
+  js.src = (SEC_HTTPS ? "https" : "http") + "://" + SEC_BASE + "/static/sdk/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);   
+}(document, "script", "sphere-engine-compilers-jssdk"));
+</script>
+<div class="sec-widget" data-widget="e187fd51d6d90e3884e522279fbbd67d"></div>
       </div>
 
     </main>
